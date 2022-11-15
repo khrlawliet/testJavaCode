@@ -1,12 +1,9 @@
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
 
 public class ExploreCollectors {
 
@@ -24,9 +21,32 @@ public class ExploreCollectors {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(new Persona("KErvin", "Bal"));
+        System.out.println(testCase(10));
+        System.out.println(testCase("Kervin"));
     }
 
+
+    //Java 15
+    public static String testString(String str) {
+        var msg = """
+    hello
+    """;
+        return msg;
+    }
+
+    // Java 14
+ record Persona(String firstname, String Lastname) {}
+
+    // Java 17
+  public static String testCase(Object input) {
+        return switch (input){
+            case Integer i -> "this is integer";
+            case String str -> "this is string " + input;
+            default -> "whatever";
+
+        };
+  }
 
     private static void collectStreamFunction() {
         //example#1 - reduce
