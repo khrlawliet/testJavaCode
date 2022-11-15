@@ -39,14 +39,14 @@ public class ExploreCollectors {
  record Persona(String firstname, String Lastname) {}
 
     // Java 17
-  public static String testCase(Object input) {
-        return switch (input){
-            case Integer i -> "this is integer";
-            case String str -> "this is string " + input;
-            default -> "whatever";
-
-        };
-  }
+//  public static String testCase(Object input) {
+//        return switch (input){
+//            case Integer i -> "this is integer";
+//            case String str -> "this is string " + input;
+//            default -> "whatever";
+//
+//        };
+//  }
 
     private static void collectStreamFunction() {
         //example#1 - reduce
