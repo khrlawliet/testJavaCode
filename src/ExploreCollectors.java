@@ -189,6 +189,37 @@ public class ExploreCollectors {
                                 flatMapping(name -> Stream.of(name.split("")), //Collector
                                         toSet()))))); //Collector
 
+
+        List<Integer> ints = List.of(1, 2, 3, 2, 1, 1, 3, 3, 4, 5, 5, 4, 4, 4, 4);
+
+        System.out.println(
+                ints.stream()
+                        .collect(groupingBy(Integer::intValue, counting()))
+                        .entrySet()
+                        .stream().max(Map.Entry.comparingByValue())
+        );
+
+        System.out.println("total occurrence " +
+                ints.stream()
+                        .collect(groupingBy(Integer::intValue, counting()))
+                        .entrySet()
+                        .stream().max(Map.Entry.comparingByValue())
+                        .map(Map.Entry::getValue)
+                        .orElse(0L)
+        );
+
+        System.out.println("ans " +
+                ints.stream()
+                        .collect(collectingAndThen(groupingBy(Integer::intValue, counting()),
+                                map -> map.entrySet()
+                                        .stream()
+                                        .max(Map.Entry.comparingByValue())
+                                        .map(Map.Entry::getKey)
+                                        .orElse(0)
+
+                        ))
+        );                                
+
     }
 
     private void notes() {
