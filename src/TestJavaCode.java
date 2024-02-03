@@ -19,6 +19,23 @@ public class TestJavaCode {
 //        testCons.accept("kervin");
 //        System.out.println(testSupp.get());
 //        System.out.println(testPrd.test(3));
+
+        Integer[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+        checkNumber(numbers, (x) -> x % 2 == 0);
+        System.out.println("-----------------");
+        checkNumber(numbers, (x) -> x % 2 != 0);
+
+        var firstNames = List.of("John", "Jasmin", "Mark");
+
+        firstNames.stream()
+                .map(TestJavaCode::getTitle)
+                .map(result -> result.map(String::toUpperCase))
+                .map(result -> switch (result) {
+                    case Success success -> success.getResult();
+                    case Failure error -> error.getError();
+                })
+                .forEach(System.out::println);
     }
 
     // ar = [1, 3, 2, 6, 1, 2], n = 6, k = 3
@@ -53,6 +70,23 @@ public class TestJavaCode {
                 .count();
     }
 
+    public static void checkNumber(Integer[] numbers, Predicate<Integer> predicate) {
+        ArrayList<Integer> integers = new ArrayList<>();
+        Arrays.stream(numbers).filter(predicate).forEach(integers::add);
+        integers.forEach(System.out::println);
+    }
+
+    public static Try<String> getTitle(String title) {
+        return Try.of(() -> checkTitle(title));
+    }
+
+    public static String checkTitle(String title) throws Exception {
+        if (title.startsWith("J")) {
+            throw new Exception("Invalid Title");
+        }
+        return title;
+    }
+
     static BiFunction<Integer, String, String> testBiFunc = (Integer i, String str) -> str.concat(i.toString());
     static Function<Integer, Integer> testFunc = (Integer i) -> i * i;
     static Consumer<String> testCons = (String str) -> System.out.println(str.concat(str.toUpperCase()));
@@ -83,5 +117,8 @@ class TestSample implements TestDemo {
         System.out.println("testing");
     }
 }
+
+
+
 
 
