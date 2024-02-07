@@ -1,13 +1,11 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TestJavaCode {
+public class App {
     public static void main(String[] args) {
         List<Integer> s = Arrays.asList(1, 3, 2, 6, 1, 2);
         divisibleSumPairs(6, 3, s);
@@ -29,7 +27,7 @@ public class TestJavaCode {
         var firstNames = List.of("John", "Jasmin", "Mark");
 
         firstNames.stream()
-                .map(TestJavaCode::getTitle)
+                .map(App::getTitle)
                 .map(result -> result.map(String::toUpperCase))
                 .map(result -> switch (result) {
                     case Success success -> success.getResult();
@@ -93,29 +91,6 @@ public class TestJavaCode {
     static Supplier<Integer> testSupp = () -> 3 * 3;
     static Predicate<Integer> testPrd = (Integer b) -> b.equals(3);
 
-}
-
-
-@FunctionalInterface
-interface TestDemo {
-    void sample();
-
-    boolean equals(Object obj);
-
-    String toString();
-
-    default void testDef() {
-    }
-
-    ;
-}
-
-
-class TestSample implements TestDemo {
-    @Override
-    public void sample() {
-        System.out.println("testing");
-    }
 }
 
 
