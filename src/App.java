@@ -85,6 +85,18 @@ public class App {
         return title;
     }
 
+    private static int[] findSum(int[] arr, int total) {
+       Map<Integer, Integer> visitedNumbers = new HashMap<>();
+       for(int i = 0; i < arr.length; i++) {
+           int delta = total - arr[i];
+           if(visitedNumbers.containsKey(delta)){
+               return  new int[] { visitedNumbers.get(delta),i};
+           }
+           visitedNumbers.put(arr[i], i);
+       }
+       return new int[] {-1, -1};
+    }
+
     static BiFunction<Integer, String, String> testBiFunc = (Integer i, String str) -> str.concat(i.toString());
     static Function<Integer, Integer> testFunc = (Integer i) -> i * i;
     static Consumer<String> testCons = (String str) -> System.out.println(str.concat(str.toUpperCase()));
